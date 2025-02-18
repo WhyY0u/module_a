@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:module_a/model/user.dart';
 
 
 class RegistrationPage extends StatefulWidget {
@@ -99,9 +101,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
               width: double.infinity, 
               child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 20),
               child:  ElevatedButton(
-                onPressed: () {
-                
-                },
+                onPressed: () async {
+  var box = await Hive.openBox<User>('userBox');
+
+  bool userExists = box.values.any((user) => user.login == _login.text);
+
+  if (!userExists) {
+    var user = User(
+      login: _login.text, 
+      password: _password.text, 
+      email: _email.text,
+      isAuthenticated: false,
+    );
+    await box.put('userKey', user);
+    Navigator.pop(context); 
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Пользователь с таким логином уже существует!')),
+    );
+  }
+},
+
+
                 child: Text('Создать аккаунт'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
