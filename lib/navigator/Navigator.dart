@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module_a/page/basket/Basket.dart';
 import 'package:module_a/page/catalog/CatalogPage.dart';
 import 'package:module_a/page/profiler/ProfilerPage.dart';
 
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
      CatalogPage(),   
-    const Profilerpage(),      
+     BasketPage(),      
     const Profilerpage(), 
   ];
 

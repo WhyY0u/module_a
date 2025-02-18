@@ -24,7 +24,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         title: const Text('Регистрация'),
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       body: Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 35.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

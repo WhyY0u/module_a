@@ -18,7 +18,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     double containerWidth = widget.product.images.length * 15.0;
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       body: Stack(
         children: [
           Padding(

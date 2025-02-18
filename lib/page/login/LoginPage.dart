@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
         centerTitle: true,
 
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       body: Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -61,41 +61,41 @@ class LoginPage extends StatelessWidget {
               width: double.infinity, 
               child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
               child:  ElevatedButton(
-onPressed: () async {
-  bool isValidEmail = RegExp(
-    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA9]{2,}$'
-  ).hasMatch(_emailController.text);
+                onPressed: () async {
+                  bool isValidEmail = RegExp(
+                    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA9]{2,}$'
+                  ).hasMatch(_emailController.text);
 
-  if (isValidEmail) {
-    var userBox = await Hive.openBox<User>('userBox');
+                  if (isValidEmail) {
+                    var userBox = await Hive.openBox<User>('userBox');
 
-    User? user = userBox.values.firstWhere(
-      (user) => user.email == _emailController.text && user.password == _passwordController.text,
-      orElse: () => User(login: '', password: '', email: '', isAuthenticated: false), 
-    );
-  
-    if (user != null && user.login != '') {
-      var authBox = await Hive.openBox('authBox');
-      await authBox.put('isAuthenticated', true);  
+                    User? user = userBox.values.firstWhere(
+                      (user) => user.email == _emailController.text && user.password == _passwordController.text,
+                      orElse: () => User(login: '', password: '', email: '', isAuthenticated: false), 
+                    );
+                  
+                    if (user != null && user.login != '') {
+                      var authBox = await Hive.openBox('authBox');
+                      await authBox.put('isAuthenticated', true);  
 
-      user.isAuthenticated = true;
-      await userBox.put('userKey', user);
+                      user.isAuthenticated = true;
+                      await userBox.put('userKey', user);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => MainScreen()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Неверный логин или пароль!')),
-      );
-    }
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Некорректный адрес электронной почты!')),
-    );
-  }
-},
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainScreen()),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Неверный логин или пароль!')),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Некорректный адрес электронной почты!')),
+                    );
+                  }
+                },
 
                 child: Text('Войти'),
                 style: ElevatedButton.styleFrom(

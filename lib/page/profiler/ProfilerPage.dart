@@ -14,7 +14,7 @@ class Profilerpage extends StatelessWidget {
         title: const Text('Профиль', style: TextStyle(fontSize: 17)),
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[300],
       body: Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
