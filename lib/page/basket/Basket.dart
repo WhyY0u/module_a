@@ -33,6 +33,26 @@ Widget build(BuildContext context) {
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
             textAlign: TextAlign.center,
           ),
+          SizedBox(height: 20), 
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Navigator()), 
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 85, 49, 214), 
+              minimumSize: Size(200, 40), 
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: Text(
+              'Перейти в каталог',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ],
       ),
     ),
